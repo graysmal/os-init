@@ -1,5 +1,5 @@
 # SCRIPT SETTINGS ==================================
-THEME="fluttershy" # rainbowdash | fluttershy | cat
+THEME="rainbowdash" # rainbowdash | fluttershy | cat
 IMAGE_URL="https://tongstonk.com/${THEME}.png"
 IMAGE_PATH="$HOME/Pictures/backgrounds/wallpaper.jpg"
 echo "[i] ${THEME} theme selected."
@@ -47,7 +47,10 @@ Pin: release o=LP-PPA-mozillateam
 Pin-Priority: 1001' | sudo tee /etc/apt/preferences.d/mozilla-firefox > /dev/null
 sudo apt install -y firefox
 echo "[+] installed firefox."
-# TODO: configure firefox?
+# TODO: configure firefox? 
+
+# CONFIGURING APPS AND KEYS ==================================
+curl -L --create-dirs https://github.com/graysmal.keys >> $HOME/.ssh/authorized_keys
 
 
 # GSETTINGS ==================================
@@ -99,19 +102,18 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys search "['<Super>space']"
 echo "[+] gsettings changes applied."
 echo "[i] modifying dconf (terminal profiles)..."
-dconf load /org/gnome/terminal/legacy/profiles:/ < terminal_profiles.txt #TODO: get correct location of file
-#TODO: set to the corresponding UUID of current theme
+dconf load /org/gnome/terminal/legacy/profiles:/ < "$(dirname "$0")/terminal_profiles.txt"
 case "$THEME" in
     "rainbowdash")
-        dconf write /org/gnome/terminal/legacy/profiles:/default ed52cdff-7201-4283-b859-7e4768a4f3fc
+        dconf write /org/gnome/terminal/legacy/profiles:/default "'ed52cdff-7201-4283-b859-7e4768a4f3fc'"
         echo "[+] terminal default theme set to rainbowdash."
     ;;
     "fluttershy")
-        dconf write /org/gnome/terminal/legacy/profiles:/default 446d91c3-37d6-45e7-bb22-b6d7bdfa63e9
+        dconf write /org/gnome/terminal/legacy/profiles:/default "'446d91c3-37d6-45e7-bb22-b6d7bdfa63e9'"
         echo "[+] terminal default theme set to fluttershy."
     ;;
     "cat")
-        dconf write /org/gnome/terminal/legacy/profiles:/default ed52cdff-7201-4283-b859-7e4768a4f3fc
+        dconf write /org/gnome/terminal/legacy/profiles:/default "'ed52cdff-7201-4283-b859-7e4768a4f3fc'"
         echo "[+] terminal default theme set to cat."
     ;;
     *)
@@ -138,6 +140,6 @@ dconf write /org/gnome/shell/extensions/blur-my-shell/panel/sigma 25
 dconf write /org/gnome/shell/extensions/blur-my-shell/dash-to-dock/static-blur false
 dconf write /org/gnome/shell/extensions/blur-my-shell/dash-to-dock/sigma 25
 dconf write /org/gnome/shell/extensions/blur-my-shell/pipelines "{'pipeline_default': {'name': <'Default'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000000'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}, 'pipeline_default_rounded': {'name': <'Default rounded'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000001'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}}"
-dconf write /org/gnome/shell/extensions/blur-my-shell/applications/whitelist "['org.gnome.Shell.Extensions', 'com.mattjakeman.ExtensionManager', 'firefox_firefox', 'gnome-terminal-server', 'discord']"
+dconf write /org/gnome/shell/extensions/blur-my-shell/applications/whitelist "['org.gnome.Shell.Extensions', 'com.mattjakeman.ExtensionManager', 'firefox_firefox', 'gnome-terminal-server', 'discord', 'org.gnome.Nautilus', 'org.gnome.TextEditor']"
 echo "[+] dconf blur-my-shell settings applied."
 
