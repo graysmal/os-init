@@ -1,27 +1,27 @@
 # SCRIPT SETTINGS ==================================
-THEME="rainbowdash" # rainbowdash | fluttershy | cat
+THEME="fluttershy" # rainbowdash | fluttershy | cat
 IMAGE_URL="https://tongstonk.com/${THEME}.png"
 IMAGE_PATH="$HOME/Pictures/backgrounds/wallpaper.jpg"
 echo "[i] ${THEME} theme selected."
 
 # DAMNATIO MEMORIAE SNAP! ==================================
-echo "[i] removing all snap packages..."
-sudo systemctl stop snapd
-sudo systemctl disable snapd
-for snap_pkg in $(snap list | awk 'NR>1 {print $1}'); do
-    echo "    Removing $snap_pkg..."
-    sudo snap remove --purge "$snap_pkg" 2>/dev/null || true
-done
-echo "[+] removed all snap packages."
+#echo "[i] removing all snap packages..."
+#sudo systemctl stop snapd
+#sudo systemctl disable snapd
+#for snap_pkg in $(snap list | awk 'NR>1 {print $1}'); do
+#    echo "    Removing $snap_pkg..."
+#    sudo snap remove --purge "$snap_pkg" 2>/dev/null || true
+#done
+#echo "[+] removed all snap packages."
 
-echo "[i] purging snap residue from machine..."
-sudo apt purge -y snapd ubuntu-core-launcher squashfs-tools
-sudo rm -rf ~/snap /snap /var/snap /var/lib/snapd /var/cache/snapd
-echo "[i] blacklisting snap for good..."
-echo "Package: snapd
-Pin: release a=*
-Pin-Priority: -1" | sudo tee /etc/apt/preferences.d/nosnap.pref > /dev/null
-echo "[+] snap removed, damnatio memoriae! >:D"
+#echo "[i] purging snap residue from machine..."
+#sudo apt purge -y snapd ubuntu-core-launcher squashfs-tools
+#sudo rm -rf ~/snap /snap /var/snap /var/lib/snapd /var/cache/snapd
+#echo "[i] blacklisting snap for good..."
+#echo "Package: snapd
+#Pin: release a=*
+#Pin-Priority: -1" | sudo tee /etc/apt/preferences.d/nosnap.pref > /dev/null
+#echo "[+] snap removed, damnatio memoriae! >:D"
 
 # installing packages and apps ==================================
 # apt repository --------------------------------
@@ -98,6 +98,27 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Primary>
 gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys search "['<Super>space']"
 echo "[+] gsettings changes applied."
+echo "[i] modifying dconf (terminal profiles)..."
+dconf load /org/gnome/terminal/legacy/profiles:/ < terminal_profiles.txt #TODO: get correct location of file
+#TODO: set to the corresponding UUID of current theme
+case "$THEME" in
+    "rainbowdash")
+        dconf write /org/gnome/terminal/legacy/profiles:/default ed52cdff-7201-4283-b859-7e4768a4f3fc
+        echo "[+] terminal default theme set to rainbowdash."
+    ;;
+    "fluttershy")
+        dconf write /org/gnome/terminal/legacy/profiles:/default 446d91c3-37d6-45e7-bb22-b6d7bdfa63e9
+        echo "[+] terminal default theme set to fluttershy."
+    ;;
+    "cat")
+        dconf write /org/gnome/terminal/legacy/profiles:/default ed52cdff-7201-4283-b859-7e4768a4f3fc
+        echo "[+] terminal default theme set to cat."
+    ;;
+    *)
+        echo "[!] ${THEME} not found as a theme, try rainbowdash, fluttershy, or cat."
+    ;;
+esac
+echo "[+] dconf changes applied."
 
 # GNOME EXTENSIONS ==================================
 
