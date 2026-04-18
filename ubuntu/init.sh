@@ -5,6 +5,7 @@ IMAGE_PATH="$HOME/Pictures/backgrounds/wallpaper.jpg"
 echo "[i] ${THEME} theme selected."
 
 # DAMNATIO MEMORIAE SNAP! ==================================
+#TODO: only complete if snap is currently installed
 echo "[i] removing all snap packages..."
 sudo systemctl stop snapd
 sudo systemctl disable snapd
@@ -33,6 +34,7 @@ echo "[+] installed apt packages."
 
 # external apps (discord, firefox) --------------------------------
 # discord ................................
+# TODO: only complete if discord is not found 
 echo "[i] downloading discord .deb package..."
 curl -L -o "$HOME/Downloads/discord.deb" "https://discord.com/api/download?platform=linux&format=deb"
 echo "[i] installing discord via .deb package..."
@@ -40,6 +42,7 @@ sudo dpkg -i "$HOME/Downloads/discord.deb" || sudo apt -f install -y
 echo "[+] installed discord."
 
 # firefox ................................
+# TODO: only complete if firefox is not found
 echo "[i] installing firefox via mozilla ppa..."
 sudo add-apt-repository -y ppa:mozillateam/ppa
 echo 'Package: firefox*
@@ -49,9 +52,11 @@ sudo apt install -y firefox
 echo "[+] installed firefox."
 
 # CONFIGURING APPS AND KEYS ==================================
+# TODO: don't duplicate current authorized keys
 curl -L --create-dirs https://github.com/graysmal.keys >> $HOME/.ssh/authorized_keys
 mkdir $HOME/.config/mozilla
 cp -r "$(dirname "$0")/../apps/firefox" $HOME/.config/mozilla/
+# TODO: enable darkmode for cats, enable lightmode for ponies
 
 # GSETTINGS ==================================
 # wallpaper --------------------------------
@@ -116,7 +121,7 @@ case "$THEME" in
         dconf write /org/gnome/terminal/legacy/profiles:/default "'446d91c3-37d6-45e7-bb22-b6d7bdfa63e9'"
         echo "[+] terminal default theme set to fluttershy."
     ;;
-    "cats")
+    "cats") # TODO: create cat terminal scheme
         dconf write /org/gnome/terminal/legacy/profiles:/default "'ed52cdff-7201-4283-b859-7e4768a4f3fc'"
         echo "[+] terminal default theme set to cat."
     ;;
@@ -147,4 +152,3 @@ dconf write /org/gnome/shell/extensions/blur-my-shell/pipelines "{'pipeline_defa
 dconf write /org/gnome/shell/extensions/blur-my-shell/applications/whitelist "['org.gnome.Shell.Extensions', 'com.mattjakeman.ExtensionManager', 'firefox_firefox', 'gnome-terminal-server', 'discord', 'org.gnome.Nautilus', 'org.gnome.TextEditor']"
 dconf write /org/gnome/shell/enabled-extensions "['blur-my-shell@aunetx']"
 echo "[+] dconf blur-my-shell settings applied."
-
