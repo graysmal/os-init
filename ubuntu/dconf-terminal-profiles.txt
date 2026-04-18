@@ -1,0 +1,33 @@
+[/]
+default='446d91c3-37d6-45e7-bb22-b6d7bdfa63e9'
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', 'ed52cdff-7201-4283-b859-7e4768a4f3fc', '446d91c3-37d6-45e7-bb22-b6d7bdfa63e9']
+
+[:446d91c3-37d6-45e7-bb22-b6d7bdfa63e9]
+background-color='rgb(252,218,255)'
+background-transparency-percent=38
+bold-color='rgb(251,0,0)'
+bold-color-same-as-fg=true
+bold-is-bright=false
+cursor-colors-set=false
+foreground-color='rgb(190,181,86)'
+highlight-colors-set=false
+palette=['rgb(224,215,144)', 'rgb(204,0,116)', 'rgb(133,154,6)', 'rgb(230,226,142)', 'rgb(52,164,125)', 'rgb(117,80,123)', 'rgb(55,226,226)', 'rgb(211,215,207)', 'rgb(225,221,155)', 'rgb(239,41,136)', 'rgb(172,186,88)', 'rgb(255,244,164)', 'rgb(114,207,186)', 'rgb(173,127,168)', 'rgb(62,230,253)', 'rgb(238,238,236)']
+use-theme-colors=false
+use-theme-transparency=false
+use-transparent-background=true
+visible-name='fluttershy'
+
+[:ed52cdff-7201-4283-b859-7e4768a4f3fc]
+background-color='rgb(218,253,255)'
+background-transparency-percent=38
+bold-color='rgb(251,0,0)'
+bold-color-same-as-fg=true
+bold-is-bright=false
+cursor-colors-set=false
+foreground-color='rgb(173,2,2)'
+highlight-colors-set=false
+palette=['rgb(46,52,54)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(230,226,142)', 'rgb(52,101,164)', 'rgb(117,80,123)', 'rgb(226,120,55)', 'rgb(211,215,207)', 'rgb(85,87,83)', 'rgb(239,41,41)', 'rgb(104,186,88)', 'rgb(255,244,164)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(253,136,62)', 'rgb(238,238,236)']
+use-theme-colors=false
+use-theme-transparency=false
+use-transparent-background=true
+visible-name='rainbowdash'
