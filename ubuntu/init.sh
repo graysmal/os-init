@@ -1,5 +1,5 @@
 # SCRIPT SETTINGS ==================================
-THEME="rainbowdash" # rainbowdash | fluttershy | cat
+THEME="rainbowdash" # rainbowdash | fluttershy | cats
 IMAGE_URL="https://tongstonk.com/${THEME}.png"
 IMAGE_PATH="$HOME/Pictures/backgrounds/wallpaper.jpg"
 echo "[i] ${THEME} theme selected."
@@ -79,7 +79,7 @@ case "$THEME" in
         gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-magenta'
         echo "[+] gtk set to Yaru-magenta."
     ;;
-    "cat")
+    "cats")
         gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-sage'
         echo "[+] gtk set to Yaru-sage."
     ;;
@@ -113,7 +113,7 @@ case "$THEME" in
         dconf write /org/gnome/terminal/legacy/profiles:/default "'446d91c3-37d6-45e7-bb22-b6d7bdfa63e9'"
         echo "[+] terminal default theme set to fluttershy."
     ;;
-    "cat")
+    "cats")
         dconf write /org/gnome/terminal/legacy/profiles:/default "'ed52cdff-7201-4283-b859-7e4768a4f3fc'"
         echo "[+] terminal default theme set to cat."
     ;;
