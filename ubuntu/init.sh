@@ -142,5 +142,6 @@ dconf write /org/gnome/shell/extensions/blur-my-shell/dash-to-dock/static-blur f
 dconf write /org/gnome/shell/extensions/blur-my-shell/dash-to-dock/sigma 25
 dconf write /org/gnome/shell/extensions/blur-my-shell/pipelines "{'pipeline_default': {'name': <'Default'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000000'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}, 'pipeline_default_rounded': {'name': <'Default rounded'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000001'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}}"
 dconf write /org/gnome/shell/extensions/blur-my-shell/applications/whitelist "['org.gnome.Shell.Extensions', 'com.mattjakeman.ExtensionManager', 'firefox_firefox', 'gnome-terminal-server', 'discord', 'org.gnome.Nautilus', 'org.gnome.TextEditor']"
+dconf write /org/gnome/shell/enabled-extensions "['blur-my-shell@aunetx']"
 echo "[+] dconf blur-my-shell settings applied."
 
