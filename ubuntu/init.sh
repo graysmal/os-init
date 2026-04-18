@@ -96,6 +96,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 gsettings set org.gnome.shell favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop']"
+gsettings set org.gnome.desktop.app-folders folder-children "['Utilities', 'YaST', 'Pardus', '431aded2-6388-4b06-881a-286788f183a4']"
 gsettings set org.gnome.shell.extensions.ding show-home false
 gsettings set org.gnome.nautilus.preferences show-hidden-files false
 gsettings set org.gnome.desktop.wm.keybindings close "['<Alt>F4', '<Super>c']"
@@ -103,7 +104,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Primary>
 gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys search "['<Super>space']"
 echo "[+] gsettings changes applied."
-echo "[i] modifying dconf (terminal profiles)..."
+echo "[i] modifying dconf (terminal profiles, app folders)..."
+dconf load /org/gnome/desktop/app-folders/ < "$(dirname "$0")/dconf-app-folders.txt"
 dconf load /org/gnome/terminal/legacy/profiles:/ < "$(dirname "$0")/dconf-terminal-profiles.txt"
 case "$THEME" in
     "rainbowdash")

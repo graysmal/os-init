@@ -1,0 +1,23 @@
+[/]
+folder-children=['Utilities', 'YaST', 'Pardus', '431aded2-6388-4b06-881a-286788f183a4']
+
+[folders/431aded2-6388-4b06-881a-286788f183a4]
+apps=['software-properties-drivers.desktop', 'org.gnome.clocks.desktop', 'org.gnome.eog.desktop', 'gnome-language-selector.desktop', 'org.gnome.PowerStats.desktop', 'software-properties-gtk.desktop', 'yelp.desktop', 'update-manager.desktop', 'gnome-session-properties.desktop']
+name='Ubuntu'
+translate=false
+
+[folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
+[folders/Utilities]
+apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
+categories=['X-GNOME-Utilities']
+name='X-GNOME-Utilities.directory'
+translate=true
+
+[folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
