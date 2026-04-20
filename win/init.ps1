@@ -1,5 +1,5 @@
 # SCRIPT SETTINGS ==================================
-$THEME = "fluttershy" # rainbowdash | fluttershy | cats
+$THEME = "cats" # rainbowdash | fluttershy | cats
 $IMAGE_URL = "https://tongstonk.com/${THEME}.png"
 $IMAGE_PATH = "$env:USERPROFILE\Pictures\backgrounds\wallpaper.jpg"
 Write-Host "[i] $THEME theme selected."
@@ -10,6 +10,7 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     Start-Process powershell -Verb RunAs -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
     exit
 }
+
 
 # WALLPAPER ==================================
 Write-Host "[i] downloading wallpaper image from URL..."
@@ -31,28 +32,45 @@ public class Wallpaper {
 } else {
     Write-Host "[!] wallpaper does not exist at $IMAGE_PATH."
 }
+# lockscreen
+$imgPath = "C:\Windows\Web\Screen\img104.jpg"
+$RegPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
+
+If (!(Test-Path $RegPath)) { New-Item -Path $RegPath -Force | Out-Null }
+Set-ItemProperty -Path $RegPath -Name "LockScreenImageStatus" -Value 1 -Type DWord
+Set-ItemProperty -Path $RegPath -Name "LockScreenImagePath"   -Value $imgPath -Type String
+Set-ItemProperty -Path $RegPath -Name "LockScreenImageUrl"    -Value $imgPath -Type String
 
 # THEMING ==================================
 Write-Host "[i] applying theme settings..."
 $personalizePath = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize"
 
-# light mode
+switch ($THEME) {
+    "rainbowdash" { 
+Write-Host "[+] theme set to rainbowdash (blue accent, dark mode)." 
 Set-ItemProperty -Path $personalizePath -Name "AppsUseLightTheme"    -Value 1 -Type DWord
 Set-ItemProperty -Path $personalizePath -Name "SystemUsesLightTheme" -Value 1 -Type DWord
-
-# accent color from wallpaper
+Set-ItemProperty -Path $personalizePath -Name "ColorPrevalence" -Value 0 -Type DWord
+}
+    "fluttershy"  { 
+Write-Host "[+] theme set to fluttershy (pink accent, dark mode)." 
+Set-ItemProperty -Path $personalizePath -Name "AppsUseLightTheme"    -Value 1 -Type DWord
+Set-ItemProperty -Path $personalizePath -Name "SystemUsesLightTheme" -Value 1 -Type DWord
+Set-ItemProperty -Path $personalizePath -Name "ColorPrevalence" -Value 0 -Type DWord
+}
+    "cats"        { 
+Write-Host "[+] theme set to cats (green accent, dark mode)."
+Set-ItemProperty -Path $personalizePath -Name "AppsUseLightTheme"    -Value 0 -Type DWord
+Set-ItemProperty -Path $personalizePath -Name "SystemUsesLightTheme" -Value 0 -Type DWord 
 Set-ItemProperty -Path $personalizePath -Name "ColorPrevalence" -Value 1 -Type DWord
-
-switch ($THEME) {
-    "rainbowdash" { Write-Host "[+] theme set to rainbowdash (blue accent, dark mode)." }
-    "fluttershy"  { Write-Host "[+] theme set to fluttershy (pink accent, dark mode)." }
-    "cats"        { Write-Host "[+] theme set to cats (green accent, dark mode)." }
+}
     default       { Write-Host "[!] $THEME not found as a theme, try rainbowdash, fluttershy, or cats." }
 }
 
 # WinUtils
 $winutilPath = Join-Path $PSScriptRoot "winutil-conf.ps1"
-& powershell -NoProfile -File $winutilPath
+
+#& powershell -NoProfile -File $winutilPath
 # CONFIGURING APPS AND KEYS ==================================
 # ssh authorized keys --------------------------------
 # TODO: don't duplicate current authorized keys
@@ -71,5 +89,17 @@ $firefoxSrc = Join-Path (Split-Path $PSScriptRoot -Parent) "apps\firefox"
 New-Item -ItemType Directory -Force -Path $firefoxDst | Out-Null
 Copy-Item -Recurse -Force "$firefoxSrc\*" "$firefoxDst\"
 Write-Host "[+] firefox config copied."
+
+# CLEANUP
+# remove startup apps
+Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "*" -ErrorAction SilentlyContinue
+Remove-Item "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\*" -Force
+Remove-Item "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\*" -Force
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v Discord /f
+
+# remove desktop icons
+Remove-Item -Path "C:\Users\Public\Desktop\*" -Force
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideIcons" -Value 1; Get-Process "explorer" | Stop-Process
+
 
 Write-Host "[i] done! a restart is recommended for all changes to take effect."
