@@ -23,6 +23,7 @@ $apps = @(
     "PrismLauncher.PrismLauncher",
     "Valve.Steam",
     "Tailscale.Tailscale",
+    "Microsoft.Powertoys",
     "yt-dlp.yt-dlp"
 )
 foreach ($app in $apps) {

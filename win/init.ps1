@@ -72,6 +72,11 @@ $winutilPath = Join-Path $PSScriptRoot "winutil-conf.ps1"
 
 #& powershell -NoProfile -File $winutilPath
 # CONFIGURING APPS AND KEYS ==================================
+# file explorer --------------------------------
+(New-Object -ComObject Shell.Application).Namespace("$HOME").Self.InvokeVerb("pintohome")
+
+# terminal --------------------------------
+
 # ssh authorized keys --------------------------------
 # TODO: don't duplicate current authorized keys
 Write-Host "[i] adding SSH authorized keys..."
