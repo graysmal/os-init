@@ -34,6 +34,7 @@
     {
         "defaults": 
         {
+	    "backgroundImage": ".\\background.gif",
             "backgroundImageOpacity": 1,
             "backgroundImageStretchMode": "fill",
             "colorScheme": "fluttershy",
@@ -105,5 +106,6 @@
             "yellow": "#E0E19D"
         }
     ],
+    "theme": "system",
     "themes": []
 }

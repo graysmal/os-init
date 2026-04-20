@@ -1,7 +1,10 @@
 # SCRIPT SETTINGS ==================================
-$THEME = "cats" # rainbowdash | fluttershy | cats
+$THEME = "rainbowdash" # rainbowdash | fluttershy | cats
 $IMAGE_URL = "https://tongstonk.com/${THEME}.png"
+$PS_URL = "https://tongstonk.com/${THEME}.gif"
+
 $IMAGE_PATH = "$env:USERPROFILE\Pictures\backgrounds\wallpaper.jpg"
+$PS_PATH = "$env:APPDATA\..\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\background.gif"
 Write-Host "[i] $THEME theme selected."
 
 # ADMIN CHECK ==================================
@@ -70,12 +73,30 @@ Set-ItemProperty -Path $personalizePath -Name "ColorPrevalence" -Value 1 -Type D
 # WinUtils
 $winutilPath = Join-Path $PSScriptRoot "winutil-conf.ps1"
 
+# installing external apps ==================================
+
 #& powershell -NoProfile -File $winutilPath
 # CONFIGURING APPS AND KEYS ==================================
 # file explorer --------------------------------
 (New-Object -ComObject Shell.Application).Namespace("$HOME").Self.InvokeVerb("pintohome")
 
 # terminal --------------------------------
+Invoke-WebRequest -Uri $PS_URL -OutFile $PS_PATH
+$appPath = Join-Path $PSScriptRoot "AppData"
+Copy-Item $appPath -Destination "$env:APPDATA\..\.." -Recurse -Force
+$terminalSettingsPath = "$env:APPDATA\..\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+if (Test-Path $terminalSettingsPath) {
+    $settingsJson = Get-Content -Path $terminalSettingsPath -Raw | ConvertFrom-Json
+
+    # Update colorScheme based on $THEME
+    $settingsJson.profiles.defaults.colorScheme = $THEME
+
+    # Convert the modified settings back to JSON and overwrite the settings.json file
+    $settingsJson | ConvertTo-Json -Depth 10 | Set-Content -Path $terminalSettingsPath
+    Write-Host "[+] windows terminal color scheme updated to $THEME."
+} else {
+    Write-Host "[!] windows terminal settings file not found at $terminalSettingsPath."
+}
 
 # ssh authorized keys --------------------------------
 # TODO: don't duplicate current authorized keys
