@@ -36,6 +36,7 @@
         {
 	    "backgroundImage": ".\\background.gif",
             "backgroundImageOpacity": 1,
+	    "elevate": true,
             "backgroundImageStretchMode": "fill",
             "colorScheme": "fluttershy",
             "opacity": 40,
