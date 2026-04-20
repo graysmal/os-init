@@ -72,11 +72,18 @@ Set-ItemProperty -Path $personalizePath -Name "ColorPrevalence" -Value 1 -Type D
 
 # WinUtils
 $winutilPath = Join-Path $PSScriptRoot "winutil-conf.ps1"
+& powershell -NoProfile -File $winutilPath
 
 # installing external apps ==================================
 
-& powershell -NoProfile -File $winutilPath
 # CONFIGURING APPS AND KEYS ==================================
+# vim --------------------------------
+$vimPath = "C:\Program Files\Vim\vim92"
+[Environment]::SetEnvironmentVariable(
+    "Path",
+    $env:Path + ";$vimPath",
+    [EnvironmentVariableTarget]::User
+)
 # file explorer --------------------------------
 (New-Object -ComObject Shell.Application).Namespace("$HOME").Self.InvokeVerb("pintohome")
 
@@ -128,5 +135,5 @@ Remove-Item -Path "C:\Users\Public\Desktop\*" -Force
 Remove-Item -Path "$env:USERPROFILE\Desktop\*.lnk" -Force
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideIcons" -Value 1; Get-Process "explorer" | Stop-Process
 
-
+Write-Host "[i] automatic installs not available for ReCycle, Reason, or Davinci Resolve."
 Write-Host "[i] done! a restart is recommended for all changes to take effect."

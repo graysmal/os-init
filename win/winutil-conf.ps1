@@ -24,7 +24,11 @@ $apps = @(
     "Valve.Steam",
     "Tailscale.Tailscale",
     "Microsoft.Powertoys",
-    "yt-dlp.yt-dlp"
+    "yt-dlp.yt-dlp",
+    "Celsys.ClipStudioPaint",
+    "vim.vim",
+    "VitalAudio.Vital",
+    "WinDirStat.WinDirStat"
 )
 foreach ($app in $apps) {
     Write-Host "[i]   installing $app..."
