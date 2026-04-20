@@ -1,0 +1,21 @@
+{
+  "name": "NewPlus",
+  "properties": {
+    "HideFileExtension": {
+      "value": true
+    },
+    "HideStartingDigits": {
+      "value": true
+    },
+    "ReplaceVariables": {
+      "value": false
+    },
+    "TemplateLocation": {
+      "value": "C:\\Users\\tongstonk\\AppData\\Local\\Microsoft\\PowerToys\\NewPlus\\Templates"
+    },
+    "BuiltInNewHidePreference": {
+      "value": false
+    }
+  },
+  "version": "1.0"
+}

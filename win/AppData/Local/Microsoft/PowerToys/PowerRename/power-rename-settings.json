@@ -1,0 +1,8 @@
+{
+  "ExtendedContextMenuOnly": false,
+  "MaxMRUSize": 10,
+  "MRUEnabled": true,
+  "PersistState": true,
+  "ShowIcon": true,
+  "UseBoostLib": false
+}

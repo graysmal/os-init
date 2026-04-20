@@ -75,7 +75,7 @@ $winutilPath = Join-Path $PSScriptRoot "winutil-conf.ps1"
 
 # installing external apps ==================================
 
-#& powershell -NoProfile -File $winutilPath
+& powershell -NoProfile -File $winutilPath
 # CONFIGURING APPS AND KEYS ==================================
 # file explorer --------------------------------
 (New-Object -ComObject Shell.Application).Namespace("$HOME").Self.InvokeVerb("pintohome")

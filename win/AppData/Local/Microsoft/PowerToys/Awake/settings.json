@@ -1,0 +1,12 @@
+{
+  "name": "Awake",
+  "properties": {
+    "keepDisplayOn": false,
+    "mode": 0,
+    "intervalHours": 0,
+    "intervalMinutes": 1,
+    "expirationDateTime": "2026-04-20T14:20:22.48431-07:00",
+    "customTrayTimes": {}
+  },
+  "version": "0.98.1.0"
+}
