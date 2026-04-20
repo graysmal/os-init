@@ -1,0 +1,109 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "keybindings": 
+    [
+        {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.DuplicatePaneAuto",
+            "keys": "alt+shift+d"
+        }
+    ],
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "backgroundImageOpacity": 1,
+            "backgroundImageStretchMode": "fill",
+            "colorScheme": "fluttershy",
+            "opacity": 40,
+            "useAcrylic": true
+        },
+        "list": 
+        [
+            {
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Command Prompt"
+            }
+        ]
+    },
+    "schemes": 
+    [
+        {
+            "background": "#FFA5EE",
+            "black": "#E2C692",
+            "blue": "#509A81",
+            "brightBlack": "#E3CC9D",
+            "brightBlue": "#85BFB6",
+            "brightCyan": "#57D1EC",
+            "brightGreen": "#B6AE65",
+            "brightPurple": "#B77CA6",
+            "brightRed": "#EF358D",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#FDDFA3",
+            "cursorColor": "#424242",
+            "cyan": "#52CED7",
+            "foreground": "#3B3B3B",
+            "green": "#95931F",
+            "name": "fluttershy",
+            "purple": "#885381",
+            "red": "#D0127A",
+            "selectionBackground": "#DAFF45",
+            "white": "#CCCCCC",
+            "yellow": "#E6D091"
+        },
+        {
+            "background": "#B1EAF3",
+            "black": "#0C0C0C",
+            "blue": "#4076AE",
+            "brightBlack": "#767676",
+            "brightBlue": "#74A7D3",
+            "brightCyan": "#E49357",
+            "brightGreen": "#16C60C",
+            "brightPurple": "#A48CB1",
+            "brightRed": "#E74856",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#EFEEAE",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#CF8450",
+            "foreground": "#FFFFFF",
+            "green": "#13A10E",
+            "name": "rainbowdash",
+            "purple": "#75638B",
+            "red": "#C50F1F",
+            "selectionBackground": "#FF0000",
+            "white": "#CCCCCC",
+            "yellow": "#E0E19D"
+        }
+    ],
+    "themes": []
+}
