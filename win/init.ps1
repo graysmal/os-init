@@ -125,6 +125,7 @@ reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v Discord /f
 
 # remove desktop icons
 Remove-Item -Path "C:\Users\Public\Desktop\*" -Force
+Remove-Item -Path "$env:USERPROFILE\Desktop\*.lnk" -Force
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideIcons" -Value 1; Get-Process "explorer" | Stop-Process
 
 
