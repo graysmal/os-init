@@ -86,6 +86,10 @@ $vimPath = "C:\Program Files\Vim\vim92"
 )
 # file explorer --------------------------------
 (New-Object -ComObject Shell.Application).Namespace("$HOME").Self.InvokeVerb("pintohome")
+# taskbar --------------------------------
+$s = New-Object -ComObject Shell.Application
+$s.Namespace("C:\Program Files\Mozilla Firefox").ParseName("firefox.exe").InvokeVerb("taskbarpin")
+$s.Namespace("C:\Windows").ParseName("explorer.exe").InvokeVerb("taskbarpin")
 
 # terminal --------------------------------
 Invoke-WebRequest -Uri $PS_URL -OutFile $PS_PATH
