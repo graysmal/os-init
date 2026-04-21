@@ -86,19 +86,7 @@ $vimPath = "C:\Program Files\Vim\vim92"
 )
 # file explorer --------------------------------
 (New-Object -ComObject Shell.Application).Namespace("$HOME").Self.InvokeVerb("pintohome")
-# TASKBAR PINS ==================================
-Write-Host "[i] pinning apps to taskbar..."
-$syspinPath = "$env:TEMP\syspin.exe"
 
-Invoke-WebRequest -Uri "https://github.com/graysmal/os-init/..." # host it yourself or:
-Invoke-WebRequest -Uri "https://www.stefankueng.com/files/syspin.exe" -OutFile $syspinPath
-
-& $syspinPath "C:\Program Files\Mozilla Firefox\firefox.exe" 5386
-& $syspinPath "C:\Windows\explorer.exe" 5386
-# 5386 = pin to taskbar, 5387 = unpin
-
-Remove-Item $syspinPath
-Write-Host "[+] apps pinned."
 
 # terminal --------------------------------
 Invoke-WebRequest -Uri $PS_URL -OutFile $PS_PATH
